@@ -1,0 +1,129 @@
+.drop-kick {
+	.guard () when not (@dropKickSpaced = false) {
+		.spaced(@dropKickSpaced);
+	}
+	.guard();
+	&__menu {
+		.spaced(0);
+	}
+	&__current {
+		.cursor();
+		.relative();
+		.user-select();
+		.guard () when not (@dropKickcurrentTextColor = false) {
+			.color(@dropKickcurrentTextColor);
+		}
+		.guard () when not (@dropKickCurrentBG = false) {
+			.background(@dropKickCurrentBG);
+		}
+		.guard () when not (@dropKickBorderColor = false) {
+			.border(@dropKickBorderColor);
+		}
+		.guard () when not (@dropKickCurrentLineHeight = false) {
+			.line-height(@dropKickCurrentLineHeight);
+		}
+		.guard () when not (@dropKickCurrentVerticalPadding = false) {
+			.padding(vertical; @dropKickCurrentVerticalPadding);
+		}
+		.guard () when not (@dropKickCurrentHorizontalPadding = false) {
+			.padding(horizontal; @dropKickCurrentHorizontalPadding);
+		}
+		.guard();
+		.dropCaret () when not (@carretEnable = false) {
+			.padding(right; (@dropKickCurrentHorizontalPadding * 3));
+			&:after {
+				.absolute(50%; @dropKickCurrentHorizontalPadding);
+				.caret(down; @black; 8px; 7px);
+				.margin(top; -.4);
+				.transition(transform; .15s);
+			}
+		}
+		.dropCaret();
+		&.\--is-open {
+			.guard () when not (@dropKickBorderColor = false) {
+				.border-color(bottom; fade(@dropKickBorderColor, 20%));
+			}
+			.guard();
+			.dropCaret () when not (@carretEnable = false) {
+				&:after {
+					.rotate(-180deg);
+				}
+			}
+			.dropCaret();
+		}
+		&.\--is-disabled {
+			.cursor(not-allowed);
+			.guard () when not (@dropKickCurrentDisabledColor = false) {
+				.color(@dropKickCurrentDisabledColor)
+			}
+			.guard () when not (@dropKickCurrentDisabledBG = false) {
+				.background(@dropKickCurrentDisabledBG);
+			}
+			.guard();
+			.dropCaret () when not (@carretEnable = false) {
+				&:after {
+					.border-color(top; @dropKickCurrentDisabledColor);
+				}
+			}
+			.dropCaret();
+		}
+	}
+	&__current-text {
+		.block();
+		.crop();
+		.no-wrap();
+	}
+	&__menu-wrap {
+		.fill();
+		.relative();
+	}
+	&__menu {
+		.absolute(0; 0);
+		.fill();
+		.hide();
+		.overflow(x; hidden);
+		.unstyled();
+		.z-index(800);
+		.guard () when not (@dropKickMenuBG = false) {
+			.background(@dropKickMenuBG);
+		}
+		.guard () when not (@dropKickBorderColor = false) {
+			.border(bottom; @dropKickBorderColor);
+			.border(horizontal; @dropKickBorderColor);
+		}
+		.guard () when not (@dropKickMenuMaxHeight = false) {
+			.max-height(@dropKickMenuMaxHeight);
+		}
+		.guard () when not (@dropKickEnableMenuShadow = false) {
+			.shadow(dark; .05; 0; 3px; 4px);
+		}
+		.guard();
+		&.\--is-open {
+			.show();
+		}
+	}
+	&__item {
+		.cursor();
+		.spaced(0);
+		.guard () when not (@dropKickMenuTextColor = false) {
+			.color(@dropKickMenuTextColor);
+		}
+		.guard () when not (@dropKickItemHorizontalPadding = false) {
+			.padding(horizontal; @dropKickItemHorizontalPadding);
+		}
+		.guard () when not (@dropKickItemVerticalPadding = false) {
+			.padding(vertical; @dropKickItemVerticalPadding);
+		}
+		.guard();
+		&.active,
+		&:hover {
+			.guard () when not (@dropKickItemHoverBG = false) {
+				.background(@dropKickItemHoverBG);
+			}
+			.guard () when not (@dropKickItemHoverColor = false) {
+				.color(@dropKickItemHoverColor);
+			}
+			.guard();
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"name": "DropKick",
+	"description": "Create dropdown menus from selects",
+	"version": "2.0.0",
+	"author": "TJ Draper",
+	"homepage": "https://buzzingpixel.com",
+	"autoload": true,
+	"style": {
+		"build": [
+			"css/screen.less"
+		]
+	},
+	"script": {
+		"build": [
+			"js/script.js"
+		]
+	},
+	"dependencies": {
+		"wee": "2.x.x"
+	}
+}
