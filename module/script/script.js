@@ -30,7 +30,8 @@ Wee.fn.make('dropKick', {
 					current: {},
 					disabled: $select.attr('disabled'),
 					items: {},
-					maxHeight: $select.data('max-height')
+					maxHeight: $select.data('max-height'),
+					borderless: $select.data('borderless') === 'true'
 				};
 
 			$options.each(function(el, i) {
@@ -97,12 +98,13 @@ Wee.fn.make('dropKick', {
 		}
 	},
 	dropKickTemplate: function(data) {
+		console.log(data);
 		var template = '<div class="drop-kick" data-ref="dropKickRoot">' +
-				'<div class="drop-kick__current{{#disabled|notEmpty}} --is-disabled{{/disabled}}" data-ref="dropKickCurrent">' +
+				'<div class="drop-kick__current{{#disabled|notEmpty}} --is-disabled{{/disabled}}{{#borderless|notEmpty}} --borderless{{/borderless}}" data-ref="dropKickCurrent">' +
 					'<span class="drop-kick__current-text" data-ref="dropKickCurrentText">{{current||Select an Item}}</span>' +
 				'</div>' +
 				'<div class="drop-kick__menu-wrap">' +
-					'<ul class="drop-kick__menu" data-ref="dropKickMenu"{{#maxHeight|notEmpty}} style="max-height:{{maxHeight}};"{{/maxHeight}}>' +
+					'<ul class="drop-kick__menu{{#borderless|notEmpty}} --borderless{{/borderless}}" data-ref="dropKickMenu"{{#maxHeight|notEmpty}} style="max-height:{{maxHeight}};"{{/maxHeight}}>' +
 						'{{#items}}' +
 							'<li class="drop-kick__item" data-ref="dropKickItem" data-value="{{value}}">' +
 								'{{text}}' +

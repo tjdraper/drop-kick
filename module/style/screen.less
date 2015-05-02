@@ -51,6 +51,9 @@
 			}
 			.dropCaret();
 		}
+		&.\--borderless {
+			.border(none);
+		}
 		&.\--is-disabled {
 			.cursor(not-allowed);
 			.guard () when not (@dropKickCurrentDisabledColor = false) {
@@ -100,6 +103,9 @@
 		.guard();
 		&.\--is-open {
 			.show();
+		}
+		&.\--borderless {
+			.border(none);
 		}
 	}
 	&__item {

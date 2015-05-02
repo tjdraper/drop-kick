@@ -22,6 +22,10 @@ Selects can have a custom menu max-height set per select. Use a data attribute a
 
 	<select data-max-height="220px">
 
+## Borderless
+
+Selects have a borderless option. Add `data-borderless="true"` to make the dropKick select borderless.
+
 The value of the data attribute must be a valid CSS unit such as `px` or `rem`. Note that you can set the overall default max height via the custom Less variables file.
 
 ## Custom Variables, Style, or JavaScript
