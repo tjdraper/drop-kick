@@ -98,7 +98,6 @@ Wee.fn.make('dropKick', {
 		}
 	},
 	dropKickTemplate: function(data) {
-		console.log(data);
 		var template = '<div class="drop-kick" data-ref="dropKickRoot">' +
 				'<div class="drop-kick__current{{#disabled|notEmpty}} --is-disabled{{/disabled}}{{#borderless|notEmpty}} --borderless{{/borderless}}" data-ref="dropKickCurrent">' +
 					'<span class="drop-kick__current-text" data-ref="dropKickCurrentText">{{current||Select an Item}}</span>' +
