@@ -1,5 +1,7 @@
 # 2.1.0
 
+2015-06-18
+
 - Add new method to bind new select
 - Add new `data-exclude="true"` check to `<option>` elements to exclude them from the dropdown
 
