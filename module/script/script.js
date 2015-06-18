@@ -11,11 +11,16 @@ Wee.fn.make('dropKick', {
 		Wee.$set('dropKickConf', conf);
 
 		this.$private('init');
+	},
+	bindNew: function(el) {
+		this.$private('init', el);
 	}
 }, {
-	init: function() {
+	init: function(sel) {
 		var scope = this,
-			sel = Wee.$get('dropKickConf').allSelects === true ? 'select' : 'ref:dropKick';
+			allSelects = Wee.$get('dropKickConf').allSelects === true;
+
+		sel = sel || (allSelects ? 'select' : 'ref:dropKick');
 
 		$(sel).each(function() {
 			scope.selectSetup($(this));
@@ -30,7 +35,8 @@ Wee.fn.make('dropKick', {
 					current: {},
 					disabled: $select.attr('disabled'),
 					items: {},
-					maxHeight: $select.data('max-height')
+					maxHeight: $select.data('max-height'),
+					borderless: $select.data('borderless') === 'true'
 				};
 
 			$options.each(function(el, i) {
@@ -40,9 +46,11 @@ Wee.fn.make('dropKick', {
 					optionData.current = $option.text();
 				}
 
-				optionData.items[i] = {};
-				optionData.items[i].value = $option.val();
-				optionData.items[i].text = $option.text();
+				if ($option.data('exclude') != 'true') {
+					optionData.items[i] = {};
+					optionData.items[i].value = $option.val();
+					optionData.items[i].text = $option.text();
+				}
 			});
 
 			$select.hide();
@@ -98,11 +106,11 @@ Wee.fn.make('dropKick', {
 	},
 	dropKickTemplate: function(data) {
 		var template = '<div class="drop-kick" data-ref="dropKickRoot">' +
-				'<div class="drop-kick__current{{#disabled|notEmpty}} --is-disabled{{/disabled}}" data-ref="dropKickCurrent">' +
+				'<div class="drop-kick__current{{#disabled|notEmpty}} --is-disabled{{/disabled}}{{#borderless|notEmpty}} --borderless{{/borderless}}" data-ref="dropKickCurrent">' +
 					'<span class="drop-kick__current-text" data-ref="dropKickCurrentText">{{current||Select an Item}}</span>' +
 				'</div>' +
 				'<div class="drop-kick__menu-wrap">' +
-					'<ul class="drop-kick__menu" data-ref="dropKickMenu"{{#maxHeight|notEmpty}} style="max-height:{{maxHeight}};"{{/maxHeight}}>' +
+					'<ul class="drop-kick__menu{{#borderless|notEmpty}} --borderless{{/borderless}}" data-ref="dropKickMenu"{{#maxHeight|notEmpty}} style="max-height:{{maxHeight}};"{{/maxHeight}}>' +
 						'{{#items}}' +
 							'<li class="drop-kick__item" data-ref="dropKickItem" data-value="{{value}}">' +
 								'{{text}}' +
