@@ -11,11 +11,16 @@ Wee.fn.make('dropKick', {
 		Wee.$set('dropKickConf', conf);
 
 		this.$private('init');
+	},
+	bindNew: function(el) {
+		this.$private('init', el);
 	}
 }, {
-	init: function() {
+	init: function(sel) {
 		var scope = this,
-			sel = Wee.$get('dropKickConf').allSelects === true ? 'select' : 'ref:dropKick';
+			allSelects = Wee.$get('dropKickConf').allSelects === true;
+
+		sel = sel || (allSelects ? 'select' : 'ref:dropKick');
 
 		$(sel).each(function() {
 			scope.selectSetup($(this));
