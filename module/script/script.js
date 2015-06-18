@@ -46,9 +46,11 @@ Wee.fn.make('dropKick', {
 					optionData.current = $option.text();
 				}
 
-				optionData.items[i] = {};
-				optionData.items[i].value = $option.val();
-				optionData.items[i].text = $option.text();
+				if ($option.data('exclude') != 'true') {
+					optionData.items[i] = {};
+					optionData.items[i].value = $option.val();
+					optionData.items[i].text = $option.text();
+				}
 			});
 
 			$select.hide();
